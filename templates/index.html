@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <div class="todo-app">
+      <div class="top">
+        <div class="welcome">
+          <h2>{{ name }}'s To-Do List <img src="static/images/icon.png" alt=""></h2>
+        </div>
+        <div class="logout">
+          <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+      </div>
+      <form action="/add" method='POST' class="add" >
+        <input type="text" name="add-todo" id="input-box" placeholder="Add Todo">
+        <button class="add-button">Add</button>
+      </form>
+      <ul id="list-container">
+        {% if not todos %}
+        <marquee behavior="" direction="">
+          No ToDo in DataBase, Enter ToDo to add........
+        </marquee>
+        {% endif %}
+        {% for todo in todos|reverse %}
+        <div class="check">
+          <li>{{ todo['todo'] }}</li>
+          <a class="material-icons" href="/delete/{{ todo['id']}}">&#xe872;</a>
+        </div>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
