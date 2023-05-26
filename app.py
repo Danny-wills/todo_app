@@ -1,3 +1,4 @@
+import os
 import psycopg2
 import psycopg2.extras
 from flask import Flask, render_template, request, redirect, url_for, flash, session
@@ -143,7 +144,8 @@ def del_todo(id):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.debug = os.environ.get('FLASK_DEBUG', True)
+    app.run(host='0.0.0.0', port=5000)
 
 
 

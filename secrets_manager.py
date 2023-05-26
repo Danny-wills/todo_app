@@ -2,18 +2,6 @@ import boto3
 import json
 from botocore.exceptions import ClientError
 
-client = boto3.client('secretsmanager', region_name='us-east-1')
-
-with open('secret_key.txt', 'r') as secrets:
-    app_secrets = secrets.read()
-
-response = client.update_secret(
-    SecretId = 'todo_app_Secrets',
-    Description = 'Todo App secrets for db',
-    SecretString = app_secrets
-    
-)
-
 def get_secret():
 
     secret_name = "todo_app_Secrets"
