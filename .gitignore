@@ -1,3 +1,5 @@
 .env
 db
 .terraform
+nginx
+image
